@@ -9,6 +9,7 @@ from flask import (
 from flask_babel import Babel
 
 
+
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -30,37 +31,37 @@ babel = Babel(app)
 
 
 def get_user():
-    """Returns user dictionary if ID exists, None otherwise"""
+    """
+    Returns a user dictionary or None if ID value can't be found
+    or if 'login_as' URL parameter was not found
+    """
     login_id = request.args.get('login_as')
-    if login_id:
-        try:
-            return users.get(int(login_id))
-        except ValueError:
-            return None
-    return None
+    try:
+        return users.get(int(login_id))
+    except Exception:
+        return None
 
 
 @app.before_request
-def before_request():
+def before_request() -> None:
     """Find user and set as global on flask.g.user"""
     g.user = get_user()
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """Determine best match locale for request"""
-    # Check if locale parameter exists in URL
     locale = request.args.get('locale')
     if locale and locale in app.config['LANGUAGES']:
         return locale
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
+    return request.accept_languages.best_match(Config.LANGUAGES)
 
 
 @app.route('/', strict_slashes=False)
-def index():
+def index() -> str:
     """Render index page"""
     return render_template('5-index.html')
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port="5000")
+    app.run(host="0.0.0.0", port="5000", debug=True)

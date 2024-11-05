@@ -287,7 +287,7 @@ msgid "home_header"
 msgstr "Hello World!"
 
 msgid "logged_in_as"
-msgstr "Logged in as %(username)s"
+msgstr "You are logged in as %(username)s."
 
 msgid "not_logged_in"
 msgstr "You are not logged in."

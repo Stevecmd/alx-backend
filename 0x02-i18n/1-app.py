@@ -6,6 +6,7 @@ from flask_babel import Babel
 # Instantiate the Babel object
 babel = Babel()
 
+
 class Config(object):
     """
     Babel Configuration
@@ -14,12 +15,14 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = "en"
     BABEL_DEFAULT_TIMEZONE = "UTC"
 
+
 # Create the Flask app
 app = Flask(__name__)
 app.config.from_object(Config)
 
 # Initialize Babel with the Flask app
 babel = Babel(app)
+
 
 @app.route('/', strict_slashes=False)
 def index() -> str:

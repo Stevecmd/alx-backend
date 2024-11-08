@@ -284,7 +284,7 @@ msgstr "Welcome to Holberton"
 
 #: templates/3-index.html:9
 msgid "home_header"
-msgstr "Hello World!"
+msgstr "Hello world!"
 
 msgid "logged_in_as"
 msgstr "You are logged in as %(username)s."

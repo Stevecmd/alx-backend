@@ -20,6 +20,17 @@ Read or watch:
 - How to build a basic Express app interacting with a Redis server
 - How to the build a basic Express app interacting with a Redis server and queue
 
+##### Redis docker container:
+```sh
+docker build -t <my-redis-image> .
+docker run --name redis -d <my-redis-image>
+```
+My configuration:
+```sh
+docker build -t redis .
+docker run --name redis -d redis
+```
+
 ## Tasks
 0. Install a redis instance
 [Download Redis](https://redis.io/downloads/) > version 5.07

@@ -1,0 +1,21 @@
+# Use an official Ubuntu image as a base
+FROM ubuntu:latest
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    tcl \
+    wget
+
+# Download and install Redis
+RUN wget http://download.redis.io/releases/redis-6.0.10.tar.gz \
+    && tar xzf redis-6.0.10.tar.gz \
+    && cd redis-6.0.10 \
+    && make \
+    && make install
+
+# Expose the Redis port
+EXPOSE 6379
+
+# Run Redis when the container launches
+CMD ["redis-server"]

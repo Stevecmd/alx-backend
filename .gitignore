@@ -1,2 +1,4 @@
 *.pyc
 0x02-i18n/myvenv/*
+0x03-queuing_system_in_js/node_modules/*
+node_modules/*

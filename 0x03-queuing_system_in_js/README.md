@@ -64,6 +64,48 @@ OK
 
 ```
 
+My implementation:
+Terminal one:
+```sh
+
+root@a8be9e84b261:/redis-6.0.10# cd /redis-6.0.10/src
+root@a8be9e84b261:/redis-6.0.10/src# ./redis-server &
+[1] 4260
+root@a8be9e84b261:/redis-6.0.10/src# 4260:C 02 Dec 2024 11:58:32.491 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+4260:C 02 Dec 2024 11:58:32.491 # Redis version=6.0.10....
+
+4260:M 02 Dec 2024 11:58:32.493 * Ready to accept connections
+
+```
+Terminal 1
+```sh
+
+root@a8be9e84b261:/redis-6.0.10/alx-backend/0x03-queuing_system_in_js# ls
+7-job_creator.js  package.json
+8-job-main.js     package-lock.json
+Dockerfile-redis  README.md
+dump.rdb
+
+```
+
+Terminal two:
+```sh
+
+root@a8be9e84b261:/redis-6.0.10/src# ./redis-cli
+127.0.0.1:6379> set Holberton School
+OK
+127.0.0.1:6379> get Holberton
+"School"
+```
+
+Terminal two:
+```sh
+root@a8be9e84b261:/redis-6.0.10/src# ls
+acl.c              networking.o
+acl.d              notify.c
+acl.o              dump.rdb
+```
+
 - Kill the server with the process id of the redis-server (hint: use ps and grep)
 ```sh
 
@@ -71,6 +113,13 @@ $ kill [PID_OF_Redis_Server]
 
 ```
 Copy the `dump.rdb` from the `redis-5.0.7` directory into the root of the Queuing project.
+
+To copy my dump file I used:
+```sh
+
+root@a8be9e84b261:/redis-6.0.10/src# cp /redis-6.0.10/src/dump.rdb /redis-6.0.10/alx-backend/0x03-queuing_system_in_js/
+
+```
 
 Requirements:
 
@@ -81,6 +130,13 @@ File: `README.md`, `dump.rdb`
 1. Node Redis Client
 
 Install [node_redis](https://github.com/redis/node-redis) using npm
+Install Babel and Redis using `npm install @babel/core @babel/cli @babel/preset-env @babel/node redis`
+Install nodemon `npm install nodemon --save-dev`
+```sh
+
+root@a8be9e84b261:/redis-6.0.10/alx-backend/0x03-queuing_system_in_js# npm install redis
+
+```
 
 Using Babel and ES6, write a script named `0-redis_client.js`. It should connect to the Redis server running on your machine:
 
